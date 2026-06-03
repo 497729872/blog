@@ -1,39 +1,46 @@
 media:
-  input: assets/img
-  output: /img
+input: assets/img
+output: /img
 
 content:
-  - name: posts
-    label: 博客文章
-    type: collection
-    path: content/post
-    filename: "{primary}.md"
 
-    fields:
-      - name: title
-        label: 标题
-        type: string
-        required: true
+* name: posts
+  label: 博客文章
+  type: collection
+  path: content/post
+  filename: "{fields.slug}.md"
 
-      - name: date
-        label: 日期
-        type: date
+  fields:
 
-      - name: draft
-        label: 草稿
-        type: boolean
-        default: false
+  * name: slug
+    label: 文件名（英文）
+    type: string
+    required: true
 
-      - name: categories
-        label: 分类
-        type: string
-        list: true
+  * name: title
+    label: 标题
+    type: string
+    required: true
 
-      - name: tags
-        label: 标签
-        type: string
-        list: true
+  * name: date
+    label: 日期
+    type: date
 
-      - name: body
-        label: 正文
-        type: rich-text
+  * name: draft
+    label: 草稿
+    type: boolean
+    default: false
+
+  * name: categories
+    label: 分类
+    type: string
+    list: true
+
+  * name: tags
+    label: 标签
+    type: string
+    list: true
+
+  * name: body
+    label: 正文
+    type: rich-text
