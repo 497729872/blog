@@ -7,7 +7,9 @@ content:
     label: 博客文章
     type: collection
     path: content/post
-    filename: "{primary}.md"
+    filename: "{fields.title}.md"
+    extension: md
+    format: yaml-frontmatter
 
     fields:
       - name: title
