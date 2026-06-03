@@ -15,4 +15,4 @@ weight: 1       # You can add weight to some posts to override the default sorti
 3 创建codespaces,后续所有的更新都在这里面进行
 4 While waiting for the codespace to be created, go to Settings -> Pages of your newly created repository, and set Build and deployment -> Source to GitHub Actions.
 5.After the codespace is created, you can test that the site is built successfully by running hugo server in the terminal and see your new site in action.
-6.提交数据.
+6.提交数据. 
