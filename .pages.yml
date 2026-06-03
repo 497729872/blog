@@ -1,0 +1,39 @@
+media:
+  input: assets/img
+  output: /img
+
+content:
+  - name: posts
+    label: 博客文章
+    type: collection
+    path: content/post
+    filename: "{primary}.md"
+
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+
+      - name: date
+        label: 日期
+        type: date
+
+      - name: draft
+        label: 草稿
+        type: boolean
+        default: false
+
+      - name: categories
+        label: 分类
+        type: string
+        list: true
+
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+
+      - name: body
+        label: 正文
+        type: rich-text
