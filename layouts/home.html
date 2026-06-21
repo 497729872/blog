@@ -1,0 +1,90 @@
+{{ define "main" }}
+    {{- $pages := where .Site.RegularPages "Section" "post" -}}
+    {{- $postCount := len $pages -}}
+    {{- $categories := len .Site.Taxonomies.categories -}}
+    {{- $tags := len .Site.Taxonomies.tags -}}
+    {{- $featured := first 3 $pages -}}
+    {{- $paginator := partial "helper/paginator.html" . -}}
+    {{- $heroImage := partial "helper/image" (dict "Image" "img/home-garden.png" "Resources" resources "Context" .) -}}
+
+    <section class="home-hero" aria-labelledby="home-hero-title">
+        <div class="home-hero__copy">
+            <p class="home-kicker">Knowledge Garden</p>
+            <h1 id="home-hero-title">把经验种成一座可复用的知识花园</h1>
+            <p class="home-hero__lead">
+                这里整理汽车制造、Python 开发、知识管理和投资复盘。记录不是为了堆积文字，而是为了让下一次判断更清醒、行动更稳。
+            </p>
+            <div class="home-hero__actions">
+                <a class="home-button home-button--primary" href="/archives/">浏览归档</a>
+                <a class="home-button" href="/about/">了解作者</a>
+            </div>
+        </div>
+        <div class="home-hero__panel" aria-label="站点概览">
+            {{ with $heroImage }}
+                <img src="{{ .Permalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="知识花园图标" loading="lazy">
+            {{ end }}
+            <div class="home-stat-grid">
+                <span><strong>{{ $postCount }}</strong>篇文章</span>
+                <span><strong>{{ $categories }}</strong>个分类</span>
+                <span><strong>{{ $tags }}</strong>个标签</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-focus" aria-label="关注主题">
+        <a href="/categories/技术/" class="home-focus__item">
+            <span>01</span>
+            <strong>技术与工具</strong>
+            <p>记录 Hugo、GitHub、Python 和 AI 工具带来的效率提升。</p>
+        </a>
+        <a href="/categories/股票/" class="home-focus__item">
+            <span>02</span>
+            <strong>投资复盘</strong>
+            <p>把情绪、纪律和交易规则写下来，让判断回到纸面。</p>
+        </a>
+        <a href="/about/" class="home-focus__item">
+            <span>03</span>
+            <strong>知识管理</strong>
+            <p>把零散输入变成可检索、可复用、可继续生长的系统。</p>
+        </a>
+    </section>
+
+    {{ with $featured }}
+    <section class="home-section" aria-labelledby="featured-title">
+        <div class="home-section__header">
+            <p class="home-kicker">Featured</p>
+            <h2 id="featured-title">最近更新</h2>
+        </div>
+        <div class="home-featured">
+            {{ range . }}
+                <a class="home-featured__card" href="{{ .RelPermalink }}">
+                    <span>{{ .Date.Format "2006.01.02" }}</span>
+                    <strong>{{ .Title }}</strong>
+                    {{ with .Params.description }}
+                        <p>{{ . }}</p>
+                    {{ else }}
+                        <p>{{ .Summary | plainify | truncate 82 }}</p>
+                    {{ end }}
+                </a>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+
+    <section class="article-list">
+        <div class="home-section__header">
+            <p class="home-kicker">All Notes</p>
+            <h2>全部文章</h2>
+        </div>
+        {{ range $index, $element := $paginator.Pages }}
+            {{ partial "article-list/default" . }}
+        {{ end }}
+    </section>
+
+    {{- partial "pagination.html" . -}}
+    {{- partial "footer/footer" . -}}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}

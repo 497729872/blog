@@ -1,0 +1,19 @@
+<button class="back-to-top" type="button" aria-label="回到顶部">↑</button>
+
+<script>
+    (function () {
+        var topButton = document.querySelector('.back-to-top');
+        if (!topButton) return;
+
+        var update = function () {
+            topButton.classList.toggle('is-visible', window.scrollY > 480);
+        };
+
+        topButton.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        update();
+        window.addEventListener('scroll', update, { passive: true });
+    })();
+</script>

@@ -1,0 +1,58 @@
+# Pages placed under these sections will be shown on homepage and archive page.
+mainSections = ["post"]
+# Output page's full content in RSS.
+rssFullContent = true
+favicon        = "img/favicon.png"
+
+# Accepted values: "default", "lastmod"
+# default = see https://gohugo.io/quick-reference/glossary/#default-sort-order
+# lastmod = sort by last modified date, in descending order
+SortBy              = "default"
+
+[footer]
+    since      = 2020
+    customText = "把工作、学习和投资中的长期主义，整理成可复用的知识。"
+
+[dateFormat]
+    published   = ":date_full"
+    lastUpdated = ":date_full"
+
+[sidebar]
+    emoji    = "🌱"
+    subtitle = "汽车制造 | Python开发 | 知识管理 | 投资复盘 | 工作与思考。"
+    avatar   = "img/avatar.png"
+
+[article]
+    headingAnchor = true
+    math          = false
+    readingTime   = true
+    toc           = true
+
+    [article.license]
+        enabled = true
+        default = "Licensed under CC BY-NC-SA 4.0"
+
+[widgets]
+    homepage = [
+        { type = "search" },
+        { type = "archives", params = { limit = 5 } },
+        { type = "categories", params = { limit = 10 } },
+        { type = "tag-cloud", params = { limit = 10 } },
+    ]
+    page = [{ type = "toc" }]
+
+[opengraph.twitter]
+    site = ""
+    card = "summary_large_image"
+
+[colorScheme]
+    toggle  = true
+    default = "auto"
+
+## Comments
+[comments]
+    enabled  = false
+    provider = ""
+
+    # See all the available configurations at https://github.com/CaiJimmy/hugo-theme-stack/blob/master/config/_default/params.toml
+    # Copy the configurations you need from there and paste it here.
